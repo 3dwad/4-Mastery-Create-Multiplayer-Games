@@ -14,6 +14,14 @@ class AFPSGameMode : public AGameModeBase
 public:
 
 	AFPSGameMode();
+
+
+	UFUNCTION()
+	void CompleteMission(APawn* InstigatorPawn);
+
+	UFUNCTION(BlueprintImplementableEvent,Category = "GameMode")
+	void OnMissionCompleted(APawn* InstigatorPawn);
+
 };
 
 
