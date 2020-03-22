@@ -4,6 +4,7 @@
 #include "FPSHUD.h"
 #include "FPSCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "Kismet//GameplayStatics.h"
 
 AFPSGameMode::AFPSGameMode()
 {
@@ -22,9 +23,32 @@ void AFPSGameMode::CompleteMission(APawn* InstigatorPawn)
 	{
 		InstigatorPawn->DisableInput(nullptr);
 
+		if (SpectatingViewPoint)
+		{
+
+			//	Local variable on Actor object reference
+			AActor* NewViewTarget;
+
+			//	Get first actor of class
+			NewViewTarget = UGameplayStatics::GetActorOfClass(this, SpectatingViewPoint);
+
+			//	Cast controller from instigator pawn to APlayerController
+			APlayerController* PC = Cast<APlayerController>(InstigatorPawn->GetController());
+			if (PC)
+			{
+				PC->SetViewTargetWithBlend(NewViewTarget, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
+
+			}
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Spectating class is nullptr"));
+		}
+
 	}
 
 	OnMissionCompleted(InstigatorPawn);
 
+	
 
 }
