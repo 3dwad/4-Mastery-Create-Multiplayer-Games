@@ -16,7 +16,7 @@ AFPSGameMode::AFPSGameMode()
 	HUDClass = AFPSHUD::StaticClass();
 }
 
-void AFPSGameMode::CompleteMission(APawn* InstigatorPawn)
+void AFPSGameMode::CompleteMission(APawn* InstigatorPawn, bool bIsSucces)
 {
 
 	if (InstigatorPawn)
@@ -37,18 +37,13 @@ void AFPSGameMode::CompleteMission(APawn* InstigatorPawn)
 			if (PC)
 			{
 				PC->SetViewTargetWithBlend(NewViewTarget, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
-
 			}
 		}
 		else
 		{
 			UE_LOG(LogTemp, Warning, TEXT("Spectating class is nullptr"));
 		}
-
 	}
 
-	OnMissionCompleted(InstigatorPawn);
-
-	
-
+	OnMissionCompleted(InstigatorPawn,bIsSucces);		
 }

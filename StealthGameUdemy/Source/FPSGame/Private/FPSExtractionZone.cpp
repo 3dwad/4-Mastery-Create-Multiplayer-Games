@@ -59,7 +59,7 @@ void AFPSExtractionZone::OnZoneOverlapBegin(UPrimitiveComponent* OverlappedCompo
 		if (L_GM)
 		{
 			//	Mission completed
-			L_GM->CompleteMission(L_OverlappedPawn);
+			L_GM->CompleteMission(L_OverlappedPawn, true);
 		}
 
 	}

@@ -12,6 +12,7 @@ class UCameraComponent;
 class AFPSProjectile;
 class USoundBase;
 class UAnimSequence;
+class UPawnNoiseEmitterComponent;
 
 
 UCLASS()
@@ -32,6 +33,10 @@ protected:
 	/** First person camera */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
 	UCameraComponent* CameraComponent;
+
+	/** Add noise component	*/
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "AI")
+	UPawnNoiseEmitterComponent* NoiseComp;
 
 public:
 	AFPSCharacter();
@@ -57,6 +62,10 @@ protected:
 	/** Fires a projectile. */
 	void Fire();
 
+	//	Server function
+	UFUNCTION(Server, Reliable, WithValidation)
+	void ServerFire();
+
 	/** Handles moving forward/backward */
 	void MoveForward(float Val);
 
@@ -65,12 +74,16 @@ protected:
 
 	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
 
+	virtual void Tick(float DeltaTime) override;
+
 public:
 	/** Returns Mesh1P subobject **/
 	USkeletalMeshComponent* GetMesh1P() const { return Mesh1PComponent; }
 
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return CameraComponent; }
+
+	
 
 };
 

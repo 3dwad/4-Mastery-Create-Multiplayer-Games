@@ -23,10 +23,10 @@ public:
 
 
 	UFUNCTION()
-	void CompleteMission(APawn* InstigatorPawn);
+	void CompleteMission(APawn* InstigatorPawn, bool IsSucces);
 
 	UFUNCTION(BlueprintImplementableEvent,Category = "GameMode")
-	void OnMissionCompleted(APawn* InstigatorPawn);
+	void OnMissionCompleted(APawn* InstigatorPawn, bool IsSucces);
 
 };
 
