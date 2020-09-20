@@ -13,13 +13,9 @@ class UPawnSensingComponent;
 UENUM(BlueprintType)
 enum class EAIState : uint8
 {
-
 	Idle,
-
 	Suspicious,
-
 	Alerted
-
 };
 
 
@@ -66,9 +62,6 @@ protected:
 
 	UPROPERTY(ReplicatedUsing=OnRep_GuardState)
 	EAIState GuardState;
-
-
-
 
 public:	
 	// Called every frame

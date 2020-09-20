@@ -33,9 +33,7 @@ AFPSProjectile::AFPSProjectile()
 	/* Enable actor replication */
 	SetReplicates(true);
 	SetReplicatingMovement(true);
-
 }
-
 
 void AFPSProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, FVector NormalImpulse, const FHitResult& Hit)
 {
@@ -45,11 +43,9 @@ void AFPSProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherActor, UPr
 		OtherComp->AddImpulseAtLocation(GetVelocity() * 100.0f, GetActorLocation());			
 	}
 
-
-	if (GetLocalRole() == ROLE_Authority)
+	if (HasAuthority())
 	{
 		MakeNoise(1.f, GetInstigator());
 		Destroy();
 	}
-			
 }

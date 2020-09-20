@@ -19,10 +19,10 @@ public:
 protected:
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
-		class UStaticMeshComponent* MeshComp;
+	class UStaticMeshComponent* MeshComp;
 
 	UPROPERTY(VisibleAnywhere, Category = "Components")
-		class USphereComponent* SphereComp;
+	class USphereComponent* SphereComp;
 
 	UPROPERTY(EditDefaultsOnly, Category = "FX")
 	class UParticleSystem* PickupFX;
@@ -33,13 +33,8 @@ protected:
 
 	void PlayEffects();
 
-	
 
-
-
-public:	
-
+public:
 
 	virtual void NotifyActorBeginOverlap(AActor* OtherActor) override;
-
 };

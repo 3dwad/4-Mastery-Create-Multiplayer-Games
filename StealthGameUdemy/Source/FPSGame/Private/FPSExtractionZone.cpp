@@ -6,6 +6,7 @@
 #include "Components/DecalComponent.h"
 #include "FPSCharacter.h"
 #include "FPSGameMode.h"
+#include "FPSHelper.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -38,36 +39,38 @@ void AFPSExtractionZone::BeginPlay()
 void AFPSExtractionZone::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
-void AFPSExtractionZone::OnZoneOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AFPSExtractionZone::OnZoneOverlapBegin(
+	UPrimitiveComponent* OverlappedComponent,
+	AActor* OtherActor,
+	UPrimitiveComponent* OtherComp,
+	int32 OtherBodyIndex, bool bFromSweep,
+	const FHitResult& SweepResult)
 {
-	class AFPSCharacter* L_OverlappedPawn = Cast<AFPSCharacter>(OtherActor);
-	//	Check character to nulptr, call return if hi is
-	if (L_OverlappedPawn == nullptr)
+	if (const auto OverlappedPawn = Cast<AFPSCharacter>(OtherActor))
 	{
-		return;
-	}
-	//	Check character is carrying objective item
-	if (L_OverlappedPawn->bIsCarryingObjective)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("Overlap!"));
-
-		AFPSGameMode* L_GM = Cast<AFPSGameMode>(GetWorld()->GetAuthGameMode());
-
-		if (L_GM)
+		//	Check character is carrying objective item
+		if (OverlappedPawn->bIsCarryingObjective)
 		{
-			//	Mission completed
-			L_GM->CompleteMission(L_OverlappedPawn, true);
+			FFPSHelper::PrintToLogEverywhere(this, "OnZoneOverlapBegin()");
+
+			if (auto AuthorityGM = Cast<AFPSGameMode>(GetWorld()->GetAuthGameMode()))
+			{
+				//	Mission completed
+				FFPSHelper::PrintToLogEverywhere(this, "AuthorityGM is valid");
+				AuthorityGM->CompleteMission(OverlappedPawn, true);
+			}
+			else
+			{
+				FFPSHelper::PrintToLogEverywhere(this, "AuthorityGM is not valid");
+			}
 		}
-
-	}
-	//	Play sound if hi not have objective item
-	else
-	{
-		UGameplayStatics::PlaySound2D(this, ObjectiveMissingSound);
-
+			//	Play sound if hi not have objective item
+		else
+		{
+			UGameplayStatics::PlaySound2D(this, ObjectiveMissingSound);
+		}
 	}
 }
 

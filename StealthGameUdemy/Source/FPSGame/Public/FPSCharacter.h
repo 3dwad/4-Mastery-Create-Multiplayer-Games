@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "FPSCharacter.generated.h"
 
+
 class UInputComponent;
 class USkeletalMeshComponent;
 class UCameraComponent;
@@ -54,7 +55,7 @@ public:
 	UAnimSequence* FireAnimation;
 
 	/*	Bool for detect carrying objective*/ 
-	UPROPERTY(BlueprintReadOnly,Category = "Gameplay")
+	UPROPERTY(Replicated, BlueprintReadOnly,Category = "Gameplay")
 	bool bIsCarryingObjective;
 
 protected:
@@ -82,8 +83,5 @@ public:
 
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return CameraComponent; }
-
-	
-
 };
 

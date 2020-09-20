@@ -2,9 +2,10 @@
 
 #include "FPSGameMode.h"
 #include "FPSHUD.h"
-#include "FPSCharacter.h"
+#include "FPSGameState.h"
 #include "UObject/ConstructorHelpers.h"
 #include "Kismet//GameplayStatics.h"
+#include "EngineUtils.h"
 
 AFPSGameMode::AFPSGameMode()
 {
@@ -12,38 +13,34 @@ AFPSGameMode::AFPSGameMode()
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnClassFinder(TEXT("/Game/Blueprints/BP_Player"));
 	DefaultPawnClass = PlayerPawnClassFinder.Class;
 
-	// use our custom HUD class
+	// use our custom classes
 	HUDClass = AFPSHUD::StaticClass();
+	GameStateClass = AFPSGameState::StaticClass();
 }
 
-void AFPSGameMode::CompleteMission(APawn* InstigatorPawn, bool bIsSucces)
+void AFPSGameMode::CompleteMission(APawn* InstigatorPawn, const bool InIsSuccess)
 {
-
-	if (InstigatorPawn)
+	if (SpectatingViewPointClass)
 	{
-		InstigatorPawn->DisableInput(nullptr);
-
-		if (SpectatingViewPoint)
+		//	Get first actor of class
+		if (AActor* NewViewTarget = UGameplayStatics::GetActorOfClass(this, SpectatingViewPointClass))
 		{
-
-			//	Local variable on Actor object reference
-			AActor* NewViewTarget;
-
-			//	Get first actor of class
-			NewViewTarget = UGameplayStatics::GetActorOfClass(this, SpectatingViewPoint);
-
-			//	Cast controller from instigator pawn to APlayerController
-			APlayerController* PC = Cast<APlayerController>(InstigatorPawn->GetController());
-			if (PC)
+			for (TActorIterator<APlayerController> PlayerControllerIt(GetWorld()); PlayerControllerIt; ++PlayerControllerIt)
 			{
-				PC->SetViewTargetWithBlend(NewViewTarget, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
+				auto CurrentPlayerController = *PlayerControllerIt;
+
+				CurrentPlayerController->SetViewTargetWithBlend(NewViewTarget, 0.5f, VTBlend_Cubic);
 			}
 		}
-		else
-		{
-			UE_LOG(LogTemp, Warning, TEXT("Spectating class is nullptr"));
-		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Spectating class is nullptr"));
 	}
 
-	OnMissionCompleted(InstigatorPawn,bIsSucces);		
+	if (auto GameState = GetGameState<AFPSGameState>())
+	{
+		GameState->MulticastOnMissionCompleted(InstigatorPawn, InIsSuccess);
+	}
+	OnMissionCompleted(InstigatorPawn, InIsSuccess);
 }

@@ -2,10 +2,12 @@
 
 
 #include "FPSAIGuard.h"
+#include "FPSHelper.h"
+#include "FPSGameMode.h"
+
 #include "Perception/PawnSensingComponent.h"
 #include "DrawDebugHelpers.h"
 #include "TimerManager.h"
-#include "FPSGameMode.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Engine/Engine.h"
@@ -24,7 +26,6 @@ AFPSAIGuard::AFPSAIGuard()
 
 	PawnSensingComp->OnSeePawn.AddDynamic(this, &AFPSAIGuard::OnPawnSeen);
 	PawnSensingComp->OnHearNoise.AddDynamic(this, &AFPSAIGuard::OnPawnHeard);
-
 }
 
 // Called when the game starts or when spawned
@@ -39,10 +40,6 @@ void AFPSAIGuard::BeginPlay()
 	{
 		GoToNextPoint();
 	}
-	
-	
-
-	
 }
 
 // Called every frame
@@ -81,17 +78,12 @@ void AFPSAIGuard::OnPawnSeen(APawn* Pawn)
 	GetController()->StopMovement();
 
 	DrawDebugSphere(GetWorld(), Pawn->GetActorLocation(), 30.f, 8.f, FColor::Red, false,2.f);
-	
-
 	AFPSGameMode* L_GM = Cast<AFPSGameMode>(GetWorld()->GetAuthGameMode());
-
-	
 	if (L_GM)
 	{
 		//	Mission field
 		L_GM->CompleteMission(Pawn, false);
 	}
-	
 	//	new guard state
 	SetGuardState(EAIState::Alerted);
 }
@@ -122,7 +114,6 @@ void AFPSAIGuard::OnPawnHeard(APawn* NoiseInstigator, const FVector& Location, f
 	SetGuardState(EAIState::Suspicious);
 	
 	//	Create timer. Clear previous if already exist
-	
 	GetWorldTimerManager().ClearTimer(TimerHandle_ResetOrientation);
 	GetWorldTimerManager().SetTimer(TimerHandle_ResetOrientation, this, &AFPSAIGuard::ResetOrierntation, 5.f);	
 
@@ -140,8 +131,6 @@ void AFPSAIGuard::ResetOrierntation()
 	{
 		GoToNextPoint();
 	}
-	
-
 	SetActorRotation(InitilizeRotation);
 
 	//	New guard state
@@ -154,8 +143,10 @@ void AFPSAIGuard::SetGuardState(EAIState NewState)
 	{
 		GuardState = NewState;
 
-		OnRep_GuardState();
-			
+		if (HasAuthority())
+		{
+			OnRep_GuardState();
+		}
 	}
 }
 
@@ -175,16 +166,13 @@ void AFPSAIGuard::GoToNextPoint()
 
 void AFPSAIGuard::OnRep_GuardState()
 {
-
+	FFPSHelper::PrintToLogEverywhere(this,"OnRep_GuardState()");
 	OnStateChanged(GuardState);
-
-
 }
 
 void AFPSAIGuard::GetLifetimeReplicatedProps(TArray< FLifetimeProperty >& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
 	DOREPLIFETIME(AFPSAIGuard, GuardState);
 }
 

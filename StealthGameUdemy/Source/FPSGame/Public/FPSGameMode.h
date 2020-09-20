@@ -15,19 +15,18 @@ protected:
 
 	//	Variable with Actor class reference
 	UPROPERTY(EditDefaultsOnly,Category = "Spectating")
-	TSubclassOf<AActor> SpectatingViewPoint;
+	TSubclassOf<AActor> SpectatingViewPointClass;
 
 public:
 
 	AFPSGameMode();
 
-
 	UFUNCTION()
-	void CompleteMission(APawn* InstigatorPawn, bool IsSucces);
+	void CompleteMission(APawn* InstigatorPawn, bool InIsSuccess);
 
 	UFUNCTION(BlueprintImplementableEvent,Category = "GameMode")
-	void OnMissionCompleted(APawn* InstigatorPawn, bool IsSucces);
-
+	void OnMissionCompleted(APawn* InstigatorPawn, bool InIsSuccess);
+	
 };
 
 
