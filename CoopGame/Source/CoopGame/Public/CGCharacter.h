@@ -6,6 +6,9 @@
 #include "GameFramework/Character.h"
 #include "CGCharacter.generated.h"
 
+class USpringArmComponent;
+class UCameraComponent;
+
 UCLASS()
 class COOPGAME_API ACGCharacter : public ACharacter
 {
@@ -19,11 +22,25 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+	void MoveForward(float InValue);
+	void MoveRight(float InValue);
+	
+	void BeginCrouch();
+	void EndCrouch();
+
+	void CrouchToggle();
+	
+
+	UPROPERTY(VisibleAnywhere, Category="Components")
+	UCameraComponent* Camera;
+
+	UPROPERTY(VisibleAnywhere, Category="Components")
+	USpringArmComponent* SpringArm;
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
 };

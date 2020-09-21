@@ -24,9 +24,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53f276a0-ac23-463d-b14b-11a53a5ac754" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Config/DefaultInput.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Character.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/Maps/Main.umap" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CoopGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CoopGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Binaries/Win64/UE4Editor-CoopGame.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Binaries/Win64/UE4Editor-CoopGame.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEditor.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEditor.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/CoopGame/Private/CGCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/CoopGame/Private/CGCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/CoopGame/Public/CGCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/CoopGame/Public/CGCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +44,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Source/CoopGame/Public/CGCharacter.h" />
+        <option value="$PROJECT_DIR$/Source/CoopGame/Private/CGCharacter.cpp" />
+      </list>
+    </option>
+  </component>
   <component name="ProjectId" id="1hmqKEcW09Qq819RFtQDgk3na7u" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -44,8 +59,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34995976" />
+    <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.30008045" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys_rider" />
   </component>
   <component name="RunManager" selected="C++ Project.CoopGame">
@@ -272,6 +295,7 @@
       <updated>1600626550969</updated>
       <workItem from="1600626581216" duration="685000" />
       <workItem from="1600627344086" duration="208000" />
+      <workItem from="1600711213042" duration="5798000" />
     </task>
     <servers />
   </component>
@@ -294,5 +318,79 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="2517" height="519" key="GridCell.Tab.0.bottom" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.0.center" timestamp="1600718039562">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039562" />
+    <state width="2517" height="519" key="GridCell.Tab.0.left" timestamp="1600718039562">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039562" />
+    <state width="2517" height="519" key="GridCell.Tab.0.right" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.1.bottom" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.1.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.1.center" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.1.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.1.left" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.1.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.1.right" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.1.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.2.bottom" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.2.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.2.center" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.2.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.2.left" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.2.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.2.right" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.2.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.3.bottom" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.3.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.3.center" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.3.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.3.left" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.3.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state width="2517" height="519" key="GridCell.Tab.3.right" timestamp="1600718039563">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="519" key="GridCell.Tab.3.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600718039563" />
+    <state x="175" y="151" width="947" height="791" key="find.popup" timestamp="1600713148957">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="175" y="151" width="947" height="791" key="find.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1600713148957" />
+    <state x="474" y="196" width="800" height="678" key="search.everywhere.popup" timestamp="1600715142824">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="474" y="196" width="800" height="678" key="search.everywhere.popup/0.0.2560.1400@0.0.2560.1400" timestamp="1600715142824" />
   </component>
 </project>
