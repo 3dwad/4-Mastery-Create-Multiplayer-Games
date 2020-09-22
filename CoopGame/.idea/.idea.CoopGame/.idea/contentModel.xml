@@ -43121,6 +43121,7 @@
         <e p="DefaultEditor.ini" t="Include" />
         <e p="DefaultEngine.ini" t="Include" />
         <e p="DefaultGame.ini" t="Include" />
+        <e p="DefaultInput.ini" t="Include" />
       </e>
       <e p="CoopGame.sln" t="IncludeFlat" />
       <e p="CoopGame.uproject" t="Include" />
@@ -43141,9 +43142,13 @@
           <e p="CoopGameGameModeBase.h" t="Include" />
           <e p="Private" t="Include">
             <e p="CGCharacter.cpp" t="Include" />
+            <e p="CGWeapon.cpp" t="Include" />
+            <e p="CGWeaponAsset.cpp" t="Include" />
           </e>
           <e p="Public" t="Include">
             <e p="CGCharacter.h" t="Include" />
+            <e p="CGWeapon.h" t="Include" />
+            <e p="CGWeaponAsset.h" t="Include" />
           </e>
         </e>
         <e p="CoopGame.Target.cs" t="Include" />

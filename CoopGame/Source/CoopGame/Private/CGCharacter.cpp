@@ -2,6 +2,8 @@
 
 
 #include "CGCharacter.h"
+#include "CGWeaponAsset.h"
+#include "CGWeapon.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/PawnMovementComponent.h"
@@ -50,6 +52,26 @@ void ACGCharacter::EndCrouch()
 void ACGCharacter::CrouchToggle()
 {
 	bIsCrouched ? EndCrouch() : BeginCrouch();
+}
+
+void ACGCharacter::SpawnWeapon(UCGWeaponAsset* InAsset)
+{
+	if (InAsset && InAsset->SkeletalMesh.LoadSynchronous())
+	{
+		// Create template
+		auto TemplateWeapon = NewObject<ACGWeapon>(this, "Weapon", EObjectFlags::RF_Transient);
+
+		TemplateWeapon->SkeletalMesh->SetSkeletalMesh(InAsset->SkeletalMesh.LoadSynchronous());
+		TemplateWeapon->BaseDamage = InAsset->BaseDamage;
+
+		FActorSpawnParameters SpawnParams;
+		SpawnParams.Template = TemplateWeapon;
+		SpawnParams.Instigator = this;
+		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+		auto Weapon = GetWorld()->SpawnActor<ACGWeapon>(SpawnParams);
+		Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, "WeaponSocket");
+	}
 }
 
 // Called every frame

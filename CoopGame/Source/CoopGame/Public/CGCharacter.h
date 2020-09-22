@@ -8,6 +8,7 @@
 
 class USpringArmComponent;
 class UCameraComponent;
+class UCGWeaponAsset;
 
 UCLASS()
 class COOPGAME_API ACGCharacter : public ACharacter
@@ -29,7 +30,9 @@ protected:
 	void EndCrouch();
 
 	void CrouchToggle();
-	
+
+	UFUNCTION(BlueprintCallable)
+	void SpawnWeapon(UCGWeaponAsset* InAsset);
 
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	UCameraComponent* Camera;
