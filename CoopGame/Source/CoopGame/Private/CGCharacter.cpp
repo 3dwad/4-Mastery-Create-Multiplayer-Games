@@ -18,20 +18,19 @@ ACGCharacter::ACGCharacter()
 	SpringArm->bUsePawnControlRotation = true;
 	Camera = CreateDefaultSubobject<UCameraComponent>("CameraComponent");
 	Camera->SetupAttachment(SpringArm);
-
-	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;
 }
 
 // Called when the game starts or when spawned
 void ACGCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	GetMovementComponent()->GetNavAgentPropertiesRef().bCanCrouch = true;
 }
 
 void ACGCharacter::MoveForward(float InValue)
 {
 	AddMovementInput(GetActorForwardVector() * InValue);
+
 }
 
 void ACGCharacter::MoveRight(float InValue)
@@ -54,7 +53,7 @@ void ACGCharacter::CrouchToggle()
 	bIsCrouched ? EndCrouch() : BeginCrouch();
 }
 
-void ACGCharacter::SpawnWeapon(UCGWeaponAsset* InAsset)
+void ACGCharacter::SpawnWeapon(UCGWeaponAsset* InAsset, ACGWeapon* &OutWeapon)
 {
 	if (InAsset && InAsset->SkeletalMesh.LoadSynchronous())
 	{
@@ -63,14 +62,15 @@ void ACGCharacter::SpawnWeapon(UCGWeaponAsset* InAsset)
 
 		TemplateWeapon->SkeletalMesh->SetSkeletalMesh(InAsset->SkeletalMesh.LoadSynchronous());
 		TemplateWeapon->BaseDamage = InAsset->BaseDamage;
+		TemplateWeapon->DamageType = InAsset->DamageType;
 
 		FActorSpawnParameters SpawnParams;
 		SpawnParams.Template = TemplateWeapon;
-		SpawnParams.Instigator = this;
+		SpawnParams.Owner = this;
 		SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-		auto Weapon = GetWorld()->SpawnActor<ACGWeapon>(SpawnParams);
-		Weapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, "WeaponSocket");
+		OutWeapon = GetWorld()->SpawnActor<ACGWeapon>(SpawnParams);
+		OutWeapon->AttachToComponent(GetMesh(), FAttachmentTransformRules::SnapToTargetIncludingScale, "WeaponSocket");
 	}
 }
 
@@ -93,5 +93,10 @@ void ACGCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 
 	PlayerInputComponent->BindAction("Crouch", EInputEvent::IE_Pressed, this, &ACGCharacter::CrouchToggle);
 	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &ACGCharacter::Jump);
+}
+
+FVector ACGCharacter::GetPawnViewLocation() const
+{
+	return Camera->GetComponentLocation();
 }
 

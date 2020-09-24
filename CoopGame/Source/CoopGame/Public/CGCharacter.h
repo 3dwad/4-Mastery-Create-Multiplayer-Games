@@ -9,6 +9,7 @@
 class USpringArmComponent;
 class UCameraComponent;
 class UCGWeaponAsset;
+class ACGWeapon;
 
 UCLASS()
 class COOPGAME_API ACGCharacter : public ACharacter
@@ -32,7 +33,7 @@ protected:
 	void CrouchToggle();
 
 	UFUNCTION(BlueprintCallable)
-	void SpawnWeapon(UCGWeaponAsset* InAsset);
+	void SpawnWeapon(UCGWeaponAsset* InAsset, ACGWeapon* &OutWeapon);
 
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	UCameraComponent* Camera;
@@ -46,4 +47,6 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual FVector GetPawnViewLocation() const override;
 };

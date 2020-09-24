@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Components/SkeletalMeshComponent.h"
 #include "CGWeapon.generated.h"
 
 class USkeletalMeshComponent;
@@ -21,7 +20,13 @@ public:
 	UPROPERTY()
 	USkeletalMeshComponent* SkeletalMesh;
 
-	float BaseDamage; 
+	UFUNCTION(BlueprintCallable,Category="Weapon")
+	void Fire();
+
+	UPROPERTY()
+	float BaseDamage;
+	
+	TSubclassOf<UDamageType> DamageType;
 	
 protected:
 	// Called when the game starts or when spawned

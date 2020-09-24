@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "UObject/ObjectMacros.h"
 
 #include "CGWeaponAsset.generated.h"
 
@@ -18,11 +17,14 @@ class COOPGAME_API UCGWeaponAsset : public UDataAsset
 {
 	GENERATED_BODY()
 
-	public:
-	
+public:
+
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	TSoftObjectPtr<USkeletalMesh> SkeletalMesh;
 
 	UPROPERTY(EditAnywhere,BlueprintReadOnly)
 	float BaseDamage;
+
+	UPROPERTY(EditAnywhere,BlueprintReadOnly)
+	TSubclassOf<UDamageType> DamageType;
 };
