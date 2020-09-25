@@ -27,17 +27,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53f276a0-ac23-463d-b14b-11a53a5ac754" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Dummy.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Content/UI/WBP_Cross.uasset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/CoopGame/Private/CGHealthComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/CoopGame/Public/CGHealthComponent.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.CoopGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CoopGame/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.CoopGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.CoopGame/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Binaries/Win64/UE4Editor-CoopGame.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Binaries/Win64/UE4Editor-CoopGame.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Character.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Character.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Maps/Main.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/Main.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/CoopGame/Private/CGCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/CoopGame/Private/CGCharacter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/CoopGame/Private/CGWeapon.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/CoopGame/Private/CGWeapon.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/CoopGame/Public/CGCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/CoopGame/Public/CGCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/CoopGame/Public/CGWeapon.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/CoopGame/Public/CGWeapon.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/CoopGame/Public/CGWeaponAsset.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/CoopGame/Public/CGWeaponAsset.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,6 +54,8 @@
         <option value="$PROJECT_DIR$/Source/CoopGame/Public/CGWeaponAsset.h" />
         <option value="$PROJECT_DIR$/Source/CoopGame/Public/CGWeapon.h" />
         <option value="$PROJECT_DIR$/Source/CoopGame/Private/CGWeapon.cpp" />
+        <option value="$PROJECT_DIR$/Source/CoopGame/Public/CGHealthComponent.h" />
+        <option value="$PROJECT_DIR$/Source/CoopGame/Private/CGHealthComponent.cpp" />
       </list>
     </option>
   </component>
@@ -307,6 +307,7 @@
       <workItem from="1600969160339" duration="3586000" />
       <workItem from="1600972832257" duration="1125000" />
       <workItem from="1600974466946" duration="1492000" />
+      <workItem from="1601057801582" duration="2947000" />
     </task>
     <servers />
   </component>
@@ -335,22 +336,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="838" height="464" key="DebuggerActiveHint/0.0.2560.1400@0.0.2560.1400" timestamp="1600975239108" />
-    <state width="2517" height="519" key="GridCell.Tab.0.bottom" timestamp="1600975959090">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1601062789996">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="519" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1600975959090" />
-    <state width="2517" height="519" key="GridCell.Tab.0.center" timestamp="1600975959090">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400@0.0.2560.1400" timestamp="1601062789996" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1601062789996">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="519" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1600975959090" />
-    <state width="2517" height="519" key="GridCell.Tab.0.left" timestamp="1600975959089">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400@0.0.2560.1400" timestamp="1601062789996" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1601062789996">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="519" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1600975959089" />
-    <state width="2517" height="519" key="GridCell.Tab.0.right" timestamp="1600975959090">
+    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400@0.0.2560.1400" timestamp="1601062789996" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1601062789996">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="519" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1600975959090" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400@0.0.2560.1400" timestamp="1601062789996" />
     <state width="2517" height="519" key="GridCell.Tab.1.bottom" timestamp="1600975959090">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

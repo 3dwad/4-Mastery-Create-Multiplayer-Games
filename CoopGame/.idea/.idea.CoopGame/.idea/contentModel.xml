@@ -43142,11 +43142,13 @@
           <e p="CoopGameGameModeBase.h" t="Include" />
           <e p="Private" t="Include">
             <e p="CGCharacter.cpp" t="Include" />
+            <e p="CGHealthComponent.cpp" t="Include" />
             <e p="CGWeapon.cpp" t="Include" />
             <e p="CGWeaponAsset.cpp" t="Include" />
           </e>
           <e p="Public" t="Include">
             <e p="CGCharacter.h" t="Include" />
+            <e p="CGHealthComponent.h" t="Include" />
             <e p="CGWeapon.h" t="Include" />
             <e p="CGWeaponAsset.h" t="Include" />
           </e>
