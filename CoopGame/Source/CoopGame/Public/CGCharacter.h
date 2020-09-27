@@ -10,6 +10,7 @@ class USpringArmComponent;
 class UCameraComponent;
 class UCGWeaponAsset;
 class ACGWeapon;
+class UCGHealthComponent;
 
 UCLASS()
 class COOPGAME_API ACGCharacter : public ACharacter
@@ -33,13 +34,16 @@ protected:
 	void CrouchToggle();
 
 	UFUNCTION(BlueprintCallable)
-	void SpawnWeapon(UCGWeaponAsset* InAsset, ACGWeapon* &OutWeapon);
+	ACGWeapon* SpawnWeapon(UCGWeaponAsset* InAsset);
 
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	UCameraComponent* Camera;
 
 	UPROPERTY(VisibleAnywhere, Category="Components")
 	USpringArmComponent* SpringArm;
+
+	UPROPERTY(VisibleAnywhere, Category="Components")
+	UCGHealthComponent* HealthComponent;
 
 public:
 	// Called every frame
@@ -49,4 +53,22 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	virtual FVector GetPawnViewLocation() const override;
+
+	// UFUNCTION(Client,Reliable)
+	// void SetupWeapon_Client();
+
+	UFUNCTION(BlueprintNativeEvent)
+	void OnHealthChange(float Damage, float CurrentHealth);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnFire();
+
+	UPROPERTY(Replicated, BlueprintReadWrite, EditDefaultsOnly, Category = "Game|Weapon")
+	UCGWeaponAsset* WeaponDataAsset;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Game|Weapon")
+	TSubclassOf<ACGWeapon> BaseWeaponClass;
+
+	UPROPERTY(Replicated,BlueprintReadWrite, EditDefaultsOnly, Category = "Game|Weapon")
+	ACGWeapon* Weapon;
 };

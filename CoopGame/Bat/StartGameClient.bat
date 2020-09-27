@@ -1,0 +1,1 @@
+"D:\Epic Games\UE_4.25\Engine\Binaries\Win64\UE4Editor.exe" "D:\KrakenRep\4 Mastery Create Multiplayer Games\CoopGame\CoopGame.uproject" 127.0.0.1 -game -log -WINDOWED -ResX=800 -ResY=450 -WinX=200 -WinY=200 -nosteam

@@ -12,30 +12,36 @@ UCLASS()
 class COOPGAME_API ACGWeapon : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ACGWeapon();
 
-	UPROPERTY()
+	UPROPERTY(VisibleAnywhere, Category="Game|Weapon")
 	USkeletalMeshComponent* SkeletalMesh;
 
-	UFUNCTION(BlueprintCallable,Category="Weapon")
-	void Fire();
+	UFUNCTION( Server, Reliable, BlueprintCallable,Category="Weapon",WithValidation)
+	void Fire_Server();
 
-	UPROPERTY()
+
+
+
+	
+	UFUNCTION(Client,Reliable,Category="Weapon")
+	void FireClient(FVector InStartLocation, FVector InEndLocation);
+
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite, Category="Game|Weapon")
 	float BaseDamage;
-	
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category="Game|Weapon")
 	TSubclassOf<UDamageType> DamageType;
-	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
 };

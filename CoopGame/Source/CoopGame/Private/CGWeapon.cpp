@@ -3,7 +3,9 @@
 
 #include "CGWeapon.h"
 
+#include "CGCharacter.h"
 #include "DrawDebugHelpers.h"
+#include "CoopGame/CoopGame.h"
 #include "Kismet/GameplayStatics.h"
 
 // Sets default values
@@ -11,29 +13,38 @@ ACGWeapon::ACGWeapon()
 {
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	//SetReplicateMovement(true);
 
 	SkeletalMesh = CreateDefaultSubobject<USkeletalMeshComponent>("SkeletalMesh");
 	RootComponent = SkeletalMesh;
+	SkeletalMesh->SetIsReplicated(true);
+
+	SetReplicates(true);
 }
 
-void ACGWeapon::Fire()
+bool ACGWeapon::Fire_Server_Validate()
+{
+	return true;
+}
+
+
+void ACGWeapon::Fire_Server_Implementation()
 {
 	if (AActor* CurrentOwner = GetOwner())
 	{
 		FVector EyeLocation;
 		FRotator EyeRotation;
-
 		
 		CurrentOwner->GetActorEyesViewPoint(EyeLocation, EyeRotation);
-
+	
 		FVector ShootDirection = EyeRotation.Vector();
 		FVector EndTrace = EyeLocation + ShootDirection * 10000;
-
+	
 		FCollisionQueryParams QueryParams;
 		QueryParams.AddIgnoredActor(CurrentOwner);
 		QueryParams.AddIgnoredActor(this);
 		QueryParams.bTraceComplex = true;
-
+	
 		FHitResult HitResult;
 		if (GetWorld()->LineTraceSingleByChannel(HitResult, EyeLocation, EndTrace, ECC_Visibility, QueryParams))
 		{
@@ -43,14 +54,19 @@ void ACGWeapon::Fire()
 				UGameplayStatics::ApplyPointDamage(HitActor, BaseDamage, ShootDirection, HitResult, GetInstigatorController(), this, DamageType);
 			}
 		}
-
-		DrawDebugLine(GetWorld(),EyeLocation,EndTrace,FColor::Green,false,1.f,0,1);
+		FireClient(EyeLocation,EndTrace);
 	}
+}
+
+void ACGWeapon::FireClient_Implementation(FVector InStartLocation, FVector InEndLocation)
+{
+	DrawDebugLine(GetWorld(),InStartLocation,InEndLocation,FColor::Green,false,3.f,0,2);
 }
 
 // Called when the game starts or when spawned
 void ACGWeapon::BeginPlay()
 {
+	FCGHelper::PrintEverywhere(this,GetActorLabel());
 	Super::BeginPlay();
 	
 }
@@ -58,6 +74,8 @@ void ACGWeapon::BeginPlay()
 // Called every frame
 void ACGWeapon::Tick(float DeltaTime)
 {
+	FCGHelper::PrintLocalRole(this);
+	
 	Super::Tick(DeltaTime);
 
 }
